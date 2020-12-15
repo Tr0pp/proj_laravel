@@ -17,7 +17,13 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+use App\Http\Controllers\Site\HomeController;
+use App\Http\Controllers\Site\CategoryController;
+
 Route::namespace('Site')->group(function (){
-    Route::get('/', 'HomeController@index');
+    Route::get('/', [HomeController::class, '__invoke']);
+
+    Route::get('/produtos', [CategoryController::class, 'index']);
+    Route::get('/produtos/{slug}', [CategoryController::class, 'show']);
 
 });
